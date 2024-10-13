@@ -13,3 +13,14 @@ class ShowBlog(BaseModel):  # Used to define the response schema
     body: str
     class Config:
         from_attributes = True
+    
+class User(BaseModel):
+    name:str
+    email:str
+    password:str
+
+class ShowUser(BaseModel):
+    name:str
+    email:str
+    class Config:
+        from_attributes = True
