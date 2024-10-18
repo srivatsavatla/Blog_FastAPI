@@ -32,7 +32,7 @@ def get_db():
     tags=["blogs"],
 )  # Originally if you want to post something then the status code should be 201 not 200 we can change it to 201 using the status from FastAPI to get the correct status.
 def create_blog(request: Blog, db: Session = Depends(get_db)):
-    new_blog = Blogs(title=request.title, body=request.body)
+    new_blog = Blogs(title=request.title, body=request.body,user_id=3)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
