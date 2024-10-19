@@ -13,3 +13,15 @@ Base = (
 SessionLocal = sessionmaker(
     bind=engine, autoflush=False, autocommit=False
 )  # Create a session
+
+
+def get_db():
+    """function is used to create a new SQLAlchemy database session for each request."""
+    db = SessionLocal()
+    try:
+        yield db
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise e  # Re-raise the exception so FastAPI can handle it properly
+    finally:
+        db.close()
